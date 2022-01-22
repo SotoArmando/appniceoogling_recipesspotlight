@@ -12,8 +12,9 @@ class Homepage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: NetworkImage(
-                  'https://lh3.googleusercontent.com/5wq01ZdDZrIvWjT_2zYUkvdgTwyECSZOztKItENWHCTMq2tuCh2ubpa0YbNXv3iRcvdPoviXuCR03ttnd4_D=w1920-h945'))),
+              alignment: Alignment.topLeft,
+              fit: BoxFit.fitWidth,
+              image: AssetImage('assets/a.png'))),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -47,8 +48,8 @@ class Homepage extends StatelessWidget {
                     bottom: coremeasure_0, top: coremeasure_0 * 0.18),
                 foregroundDecoration: BoxDecoration(
                     color: index % 2 != 0
-                        ? Colors.blue.shade300.withOpacity(.0225)
-                        : Colors.red.shade400.withOpacity(.0225)),
+                        ? Colors.blue.shade300.withOpacity(.00075)
+                        : Colors.red.shade400.withOpacity(.00075)),
                 child: Column(
                   children: [
                     Container(

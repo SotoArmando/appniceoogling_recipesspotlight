@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:niceoogling/gradienttext.dart';
 import 'package:niceoogling/math.dart';
 
 class convenientHorizontalScroller extends StatefulWidget {
@@ -44,9 +45,24 @@ class _convenientHorizontalScrollerState
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "nice description to this recipe",
-                      style: Theme.of(context).textTheme.bodyText1,
+                    Container(
+                      foregroundDecoration: BoxDecoration(),
+                      child: ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) {
+                          return LinearGradient(
+                                  colors: [
+                                Colors.grey.shade600.withOpacity(.907775),
+                                Colors.grey.shade600
+                              ],
+                                  tileMode: TileMode.mirror,
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter)
+                              .createShader(bounds);
+                        },
+                        child: Text('nice description to this recipe',
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ),
                     )
                   ],
                 ),
