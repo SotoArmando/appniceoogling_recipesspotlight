@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 const double coremeasure_0 = 17,
     coremeasure_1 = 20.1875,
     coremeasure_2 = 23.97265625,
@@ -29,3 +31,15 @@ const double coremeasure_0 = 17,
     coremeasure_28 = 2090.2115041627735,
     coremeasure_29 = 2482.1261611932937,
     coremeasure_30 = 2947.524816417036;
+
+const _kFontFam = 'MyFlutterApp';
+const String? _kFontPkg = null;
+
+const IconData home =
+    IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+const IconData group_6 =
+    IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+const IconData group_7 =
+    IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+const IconData group_3 =
+    IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);

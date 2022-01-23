@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:niceoogling/convenientHorizontalScroller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:niceoogling/homepage.dart';
 import 'package:niceoogling/libretepage.dart';
@@ -21,13 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo ',
       theme: ThemeData(
-        // Define the default brightness and colors.
+          // Define the default brightness and colors.
 
-        // Define the default font family.
-        fontFamily: 'Lator',
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
-        textTheme: GoogleFonts.beVietnamProTextTheme(textTheme).copyWith(
+          // Define the default font family.
+          fontFamily: 'Lator',
+          // Define the default `TextTheme`. Use this to specify the default
+          // text styling for headlines, titles, bodies of text, and more.
+          textTheme: GoogleFonts.beVietnamProTextTheme(textTheme).copyWith(
             headline1: GoogleFonts.sourceSansPro(
               textStyle: TextStyle(
                   fontWeight: FontWeight.w300,
@@ -45,8 +44,12 @@ class MyApp extends StatelessWidget {
             ),
             bodyText1: TextStyle(
                 color: Colors.grey[600],
-                fontSize: coremeasure_0 / (pow(1.1875, 1.5925)))),
-      ),
+                fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
+            bodyText2: TextStyle(
+                color: Colors.grey[500],
+                letterSpacing: 0,
+                fontSize: coremeasure_0 / (pow(1.1875, 1.5550))),
+          )),
       home: MyHomePage(title: ""),
     );
   }
@@ -70,6 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    const names = ['Librete', 'Spotlight', 'Search'];
+    const icons = [group_7, group_6, group_3];
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -81,10 +86,44 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Color(0xFFf4f4f4),
       bottomNavigationBar: SizedBox(
         height: coremeasure_8,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [],
+        child: BottomAppBar(
+          color: Color(0xFFf4f4f4),
+          elevation: 1 / pow(1.1875, 4.97),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              for (var index in [0, 1, 2])
+                TextButton(
+                  onPressed: () {},
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              bottom: coremeasure_0 / pow(1.1875, 8)),
+                          child: Icon(
+                            icons[index],
+                            size: index != 1 ? coremeasure_2 : coremeasure_2,
+                            color: index != 1
+                                ? Colors.grey.shade500
+                                : Colors.black,
+                          ),
+                        ),
+                        Text(names[index],
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(
+                                    letterSpacing:
+                                        1 / pow(1.1875, 5).toDouble(),
+                                    color: index != 1
+                                        ? Colors.grey.shade500
+                                        : Colors.black))
+                      ]),
+                ),
+            ],
+          ),
         ),
       ),
       appBar: PreferredSize(
@@ -97,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             backgroundColor: Color(0xFFf4f4f4),
             centerTitle: true,
-            elevation: 0,
+            elevation: 1 / pow(1.1875, 4.97),
             actions: [
               TextButton(
                 child: Icon(Icons.light, color: Colors.black87),
