@@ -12,10 +12,6 @@
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
 /// 
-/// * Linearicons Free, Copyright (C) Linearicons.com
-///         Author:    Perxis
-///         License:   CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-///         Homepage:  https://linearicons.com
 ///
 import 'package:flutter/widgets.dart';
 
@@ -25,8 +21,7 @@ class MyFlutterApp {
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
-  static const IconData home = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData group_6 = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData group_7 = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData group_3 = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData group_12 = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData group_13 = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData group_14 = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

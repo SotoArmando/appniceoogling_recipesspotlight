@@ -35,11 +35,9 @@ const double coremeasure_0 = 17,
 const _kFontFam = 'MyFlutterApp';
 const String? _kFontPkg = null;
 
-const IconData home =
+const IconData group_12 =
     IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-const IconData group_6 =
+const IconData group_13 =
     IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-const IconData group_7 =
+const IconData group_14 =
     IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-const IconData group_3 =
-    IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
             bodyText2: TextStyle(
                 color: Colors.grey[500],
-                letterSpacing: 0,
+                letterSpacing: -1.0530,
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5550))),
           )),
       home: MyHomePage(title: ""),
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     const names = ['Librete', 'Spotlight', 'Search'];
-    const icons = [group_7, group_6, group_3];
+    const icons = [group_13, group_12, group_14];
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -94,34 +94,38 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               for (var index in [0, 1, 2])
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(
-                              bottom: coremeasure_0 / pow(1.1875, 8)),
-                          child: Icon(
-                            icons[index],
-                            size: index != 1 ? coremeasure_2 : coremeasure_2,
-                            color: index != 1
-                                ? Colors.grey.shade500
-                                : Colors.black,
+                Container(
+                  padding:
+                      EdgeInsets.only(bottom: coremeasure_0 / pow(1.1875, 15)),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                                bottom: coremeasure_0 / pow(1.1875, 6.125)),
+                            child: Icon(
+                              icons[index],
+                              size: index != 1 ? coremeasure_2 : coremeasure_2,
+                              color: index != 1
+                                  ? Colors.grey.shade500
+                                  : Colors.black,
+                            ),
                           ),
-                        ),
-                        Text(names[index],
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                    letterSpacing:
-                                        1 / pow(1.1875, 5).toDouble(),
-                                    color: index != 1
-                                        ? Colors.grey.shade500
-                                        : Colors.black))
-                      ]),
-                ),
+                          Text(names[index],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                      letterSpacing:
+                                          1 / pow(1.1875, 5).toDouble(),
+                                      color: index != 1
+                                          ? Colors.grey.shade500
+                                          : Colors.black))
+                        ]),
+                  ),
+                )
             ],
           ),
         ),
