@@ -32,7 +32,7 @@ class _convenientHorizontalScrollerState
         scrollDirection: Axis.horizontal,
         child: Row(
           // This next line does the trick.
-
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             for (var item in [0, 1, 2, 3, 4, 5])
               Container(
@@ -40,30 +40,47 @@ class _convenientHorizontalScrollerState
                     left: item == 0
                         ? coremeasure_0 * 0.54
                         : coremeasure_0 * 0.945),
-                width: elementswidth,
-                color: item % 2 == 0 ? Colors.grey[300] : Colors.grey[200],
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                      foregroundDecoration: BoxDecoration(),
-                      child: ShaderMask(
-                        blendMode: BlendMode.srcIn,
-                        shaderCallback: (Rect bounds) {
-                          return LinearGradient(
-                                  colors: [
-                                Colors.grey.shade600.withOpacity(.907775),
-                                Colors.grey.shade600
-                              ],
-                                  tileMode: TileMode.mirror,
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter)
-                              .createShader(bounds);
-                        },
-                        child: Text('nice description to this recipe',
-                            style: Theme.of(context).textTheme.bodyText1),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    'https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/6cf5d3c1fc204d129bcc8908b7dc7a1d.jpeg?resize=1000:*&output-format=auto&output-quality=auto'))),
+                        width: elementswidth,
                       ),
-                    )
+                    ),
+                    Container(
+                      width: elementswidth,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            color: Color(0xFFf4f4f4),
+                            child: ShaderMask(
+                              blendMode: BlendMode.srcIn,
+                              shaderCallback: (Rect bounds) {
+                                return LinearGradient(
+                                        colors: [
+                                      Color(0xFF131F25),
+                                      Colors.grey.shade900
+                                    ],
+                                        tileMode: TileMode.mirror,
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter)
+                                    .createShader(bounds);
+                              },
+                              child: Text(
+                                  "It takes all of five minutes to fry some bacon + an egg.",
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

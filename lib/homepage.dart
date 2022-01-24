@@ -21,11 +21,10 @@ class Homepage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
+              padding: EdgeInsets.only(bottom: coremeasure_0 * 0.58),
               decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(
-                        width: coremeasure_0 * 0.58,
-                        color: Colors.transparent)),
+                    bottom: BorderSide(width: 1, color: Colors.grey.shade300)),
               ),
               child: Column(
                 children: [

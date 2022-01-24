@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo ',
       theme: ThemeData(
           // Define the default brightness and colors.
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             bodyText1: TextStyle(
-                color: Colors.grey[600],
+                color: Colors.black,
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
             bodyText2: TextStyle(
                 color: Colors.grey[500],
@@ -64,17 +65,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int window = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final PageController controller =
+      PageController(viewportFraction: 1, keepPage: true, initialPage: 0);
+  final names = ['Spotlight', 'Librete', 'Search'];
+  final icons = [group_19, group_20, group_18];
+  final pages = [Homepage(), Libretepage(), Settingspage()];
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
+  void setWindow(int number) {
+    controller.jumpToPage(number);
+  }
+
   @override
   Widget build(BuildContext context) {
-    const names = ['Librete', 'Spotlight', 'Search'];
-    const icons = [group_13, group_12, group_14];
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -84,21 +94,56 @@ class _MyHomePageState extends State<MyHomePage> {
         ]),
       ),
       backgroundColor: Color(0xFFf4f4f4),
+      appBar: PreferredSize(
+          preferredSize:
+              Size.fromHeight(coremeasure_7), // here the desired height
+          child: AppBar(
+            leading: TextButton(
+              child: Icon(group_17,
+                  color: Colors.black, size: coremeasure_2 * 1.002575),
+              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+            ),
+            backgroundColor: Color(0xFFf4f4f4),
+            centerTitle: true,
+            elevation: 1 / pow(1.1875, 4.97),
+            actions: [
+              // TextButton(
+              //   child: Icon(Icons.light, color: Colors.black87),
+              //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+              // ),
+            ],
+          )),
+      body: GestureDetector(
+        child: PageView(
+          scrollBehavior: ScrollBehavior(
+              androidOverscrollIndicator: AndroidOverscrollIndicator.glow),
+          controller: controller,
+          onPageChanged: (int page) {
+            setState(() {
+              window = page;
+            });
+          },
+          children: pages,
+        ),
+      ),
       bottomNavigationBar: SizedBox(
-        height: coremeasure_8,
+        height: coremeasure_9,
         child: BottomAppBar(
           color: Color(0xFFf4f4f4),
-          elevation: 1 / pow(1.1875, 4.97),
+          elevation: 0,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               for (var index in [0, 1, 2])
                 Container(
-                  padding:
-                      EdgeInsets.only(bottom: coremeasure_0 / pow(1.1875, 15)),
+                  width: coremeasure_10,
+                  padding: EdgeInsets.only(
+                      bottom: coremeasure_0 / pow(1.1875, 54.700)),
                   child: TextButton(
-                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory),
+                    onPressed: () => setWindow(index),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -107,20 +152,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                 bottom: coremeasure_0 / pow(1.1875, 6.125)),
                             child: Icon(
                               icons[index],
-                              size: index != 1 ? coremeasure_2 : coremeasure_2,
-                              color: index != 1
+                              size: coremeasure_2 * 1.003125,
+                              color: index != window
                                   ? Colors.grey.shade500
                                   : Colors.black,
                             ),
                           ),
-                          Text(names[index],
+                          Text(index == window ? names[index] : '',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2
                                   ?.copyWith(
                                       letterSpacing:
-                                          1 / pow(1.1875, 5).toDouble(),
-                                      color: index != 1
+                                          1 * pow(1.1875, .125).toDouble(),
+                                      color: index != window
                                           ? Colors.grey.shade500
                                           : Colors.black))
                         ]),
@@ -130,37 +175,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(coremeasure_7), // here the desired height
-          child: AppBar(
-            leading: TextButton(
-              child: Icon(Icons.menu, color: Colors.black87),
-              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-            ),
-            backgroundColor: Color(0xFFf4f4f4),
-            centerTitle: true,
-            elevation: 1 / pow(1.1875, 4.97),
-            actions: [
-              TextButton(
-                child: Icon(Icons.light, color: Colors.black87),
-                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-              ),
-            ],
-          )),
-      body: PageView(
-        controller: PageController(
-          initialPage: 1,
-          viewportFraction: 1,
-        ),
-        children: [Libretepage(), Homepage(), Settingspage()],
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
