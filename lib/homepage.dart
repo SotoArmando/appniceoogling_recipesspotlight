@@ -54,6 +54,12 @@ class _HomepageState extends State<Homepage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
+              height: coremeasure_2,
+              child: Text("Spotlight",
+                  style: Theme.of(context).textTheme.headline2),
+              alignment: Alignment.center,
+            ),
+            Container(
               padding: EdgeInsets.only(bottom: coremeasure_0 * 0.24),
               decoration: BoxDecoration(
                 border: Border(
@@ -61,22 +67,15 @@ class _HomepageState extends State<Homepage> {
               ),
               child: Column(
                 children: [
-                  Container(
-                    height: coremeasure_4,
-                    child: Text("Spotlight",
-                        style: Theme.of(context).textTheme.headline2),
-                    alignment: Alignment.center,
-                  ),
                   convenientHorizontalScroller(
-                      height: coremeasure_12,
-                      width: coremeasure_12,
+                      height: coremeasure_11,
+                      width: coremeasure_11,
                       datalist: widget.datalist),
                 ],
               ),
             ),
             for (var index in [0, 1, 2])
               Container(
-                margin: EdgeInsets.only(top: coremeasure_0),
                 foregroundDecoration: BoxDecoration(
                     color: index % 2 != 0
                         ? Colors.blue.shade300.withOpacity(.00075)
@@ -84,18 +83,31 @@ class _HomepageState extends State<Homepage> {
                 child: Column(
                   children: [
                     Container(
+                      height: coremeasure_6,
                       padding: EdgeInsets.only(
                           left: coremeasure_0 * 0.54,
-                          bottom: coremeasure_0 * 0.54),
-                      child: Text(
-                        names[index],
-                        style: Theme.of(context).textTheme.headline1,
+                          bottom: coremeasure_0,
+                          top: coremeasure_0),
+                      child: ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) {
+                          return LinearGradient(
+                                  colors: [Color(0xFF111100), Colors.black],
+                                  tileMode: TileMode.mirror,
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter)
+                              .createShader(bounds);
+                        },
+                        child: Text(
+                          names[index],
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
                       ),
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.bottomLeft,
                     ),
                     convenientHorizontalScroller(
-                        height: coremeasure_13,
-                        width: coremeasure_13,
+                        height: coremeasure_12,
+                        width: coremeasure_12,
                         datalist: [
                           recipelist1,
                           recipelist2,

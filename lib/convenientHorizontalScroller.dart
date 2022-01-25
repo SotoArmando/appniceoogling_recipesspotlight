@@ -24,10 +24,12 @@ class _convenientHorizontalScrollerState
     extends State<convenientHorizontalScroller> {
   @override
   Widget build(BuildContext context) {
-    double containerheight = widget.height;
+    double labelsize = coremeasure_6;
+    double containerheight = widget.height + labelsize;
     double elementswidth = widget.width;
     return Container(
-      height: containerheight + coremeasure_6,
+      margin: EdgeInsets.only(bottom: coremeasure_0),
+      height: containerheight,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -53,33 +55,23 @@ class _convenientHorizontalScrollerState
                       ),
                     ),
                     Container(
+                      height: labelsize,
                       width: elementswidth,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Container(
-                            height: coremeasure_6,
-                            alignment: Alignment.topLeft,
-                            color: Color(0xFFf4f4f4),
-                            child: ShaderMask(
-                              blendMode: BlendMode.srcIn,
-                              shaderCallback: (Rect bounds) {
-                                return LinearGradient(
-                                        colors: [
-                                      Color(0xFF131F25),
-                                      Colors.grey.shade900
-                                    ],
-                                        tileMode: TileMode.mirror,
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter)
-                                    .createShader(bounds);
-                              },
-                              child: Text("${item.name}",
-                                  style: Theme.of(context).textTheme.bodyText1),
-                            ),
-                          )
-                        ],
+                      alignment: Alignment.topLeft,
+                      color: Color(0xFFf4f4f4),
+                      child: ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) {
+                          return LinearGradient(
+                                  colors: [Color(0xFF111100), Colors.black],
+                                  tileMode: TileMode.mirror,
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter)
+                              .createShader(bounds);
+                        },
+                        child: Text("${item.name}",
+                            textAlign: TextAlign.start,
+                            style: Theme.of(context).textTheme.bodyText1),
                       ),
                     ),
                   ],

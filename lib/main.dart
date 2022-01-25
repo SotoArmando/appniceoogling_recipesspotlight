@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -29,28 +30,33 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lator',
           // Define the default `TextTheme`. Use this to specify the default
           // text styling for headlines, titles, bodies of text, and more.
-          textTheme: GoogleFonts.beVietnamProTextTheme(textTheme).copyWith(
+          textTheme: GoogleFonts.publicSansTextTheme().copyWith(
             headline1: GoogleFonts.sourceSansPro(
               textStyle: TextStyle(
+                  height: 0.01,
                   fontWeight: FontWeight.w300,
                   fontSize: coremeasure_5,
                   color: Colors.black,
+                  wordSpacing: coremeasure_0 / (pow(1.1875, 3)),
                   letterSpacing: -.85 + .9225),
             ),
-            headline2: GoogleFonts.sourceSansPro(
+            headline2: GoogleFonts.publicSans(
               textStyle: TextStyle(
-                fontWeight: FontWeight.w400,
+                height: 1,
+                fontWeight: FontWeight.w500,
                 fontSize: coremeasure_0,
                 color: Colors.black.withOpacity(0.99705),
                 letterSpacing: 1.5750,
               ),
             ),
-            bodyText1: TextStyle(
-                color: Colors.black,
+            bodyText1: GoogleFonts.publicSans(
+                height: 1.2,
+                color: Colors.black.withOpacity(1),
+                letterSpacing: .12590,
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
             bodyText2: TextStyle(
+                height: 1,
                 color: Colors.grey[500],
-                letterSpacing: -1.0530,
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5550))),
           )),
       home: MyHomePage(title: ""),
@@ -67,13 +73,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int window = 0;
+  int window = 1;
   List<Recipe> recipelist = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
-      PageController(viewportFraction: 1, keepPage: true, initialPage: 0);
-  final names = ['Spotlight', 'Librete', 'Search'];
-  final icons = [group_19, group_20, group_18];
+      PageController(viewportFraction: 1, keepPage: true, initialPage: 1);
+  final names = ['Librete', 'Spotlight', 'Search'];
+  final icons = [group_20, group_19, group_18];
 
   void _incrementCounter() {
     setState(() {
@@ -138,8 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           children: [
-            Homepage(datalist: recipelist),
             Libretepage(),
+            Homepage(datalist: recipelist),
             Settingspage()
           ],
         ),
