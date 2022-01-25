@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/gradienttext.dart';
 import 'package:niceoogling/math.dart';
 
 class convenientHorizontalScroller extends StatefulWidget {
-  final double
-      height; // <--- generates the error, "Field doesn't override an inherited getter or setter"
-  final double
-      width; // <--- generates the error, "Field doesn't override an inherited getter or setter"
-
-  convenientHorizontalScroller(
-      {Key? key,
-      double this.height = coremeasure_1,
-      double this.width = coremeasure_1})
-      : super(key: key);
+  double height;
+  double width;
+  List<Recipe>? datalist;
+  convenientHorizontalScroller({
+    Key? key,
+    double this.height = coremeasure_1,
+    double this.width = coremeasure_1,
+    this.datalist,
+  }) : super(key: key);
 
   @override
   _convenientHorizontalScrollerState createState() =>
@@ -27,14 +27,14 @@ class _convenientHorizontalScrollerState
     double containerheight = widget.height;
     double elementswidth = widget.width;
     return Container(
-      height: containerheight,
+      height: containerheight + coremeasure_6,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           // This next line does the trick.
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            for (var item in [0, 1, 2, 3, 4, 5])
+            for (Recipe item in widget.datalist as List<Recipe>)
               Container(
                 margin: EdgeInsets.only(
                     left: item == 0
@@ -47,8 +47,8 @@ class _convenientHorizontalScrollerState
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    'https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/6cf5d3c1fc204d129bcc8908b7dc7a1d.jpeg?resize=1000:*&output-format=auto&output-quality=auto'))),
+                                alignment: Alignment.center,
+                                image: NetworkImage(item.thumbnail_url))),
                         width: elementswidth,
                       ),
                     ),
@@ -59,6 +59,8 @@ class _convenientHorizontalScrollerState
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Container(
+                            height: coremeasure_6,
+                            alignment: Alignment.topLeft,
                             color: Color(0xFFf4f4f4),
                             child: ShaderMask(
                               blendMode: BlendMode.srcIn,
@@ -73,8 +75,7 @@ class _convenientHorizontalScrollerState
                                         end: Alignment.bottomCenter)
                                     .createShader(bounds);
                               },
-                              child: Text(
-                                  "It takes all of five minutes to fry some bacon + an egg.",
+                              child: Text("${item.name}",
                                   style: Theme.of(context).textTheme.bodyText1),
                             ),
                           )

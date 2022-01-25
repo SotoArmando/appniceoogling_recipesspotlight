@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:niceoogling/Tastydescendant.dart';
+import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/homepage.dart';
 import 'package:niceoogling/libretepage.dart';
 import 'package:niceoogling/settingspage.dart';
@@ -66,12 +68,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int window = 0;
+  List<Recipe> recipelist = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
       PageController(viewportFraction: 1, keepPage: true, initialPage: 0);
   final names = ['Spotlight', 'Librete', 'Search'];
   final icons = [group_19, group_20, group_18];
-  final pages = [Homepage(), Libretepage(), Settingspage()];
 
   void _incrementCounter() {
     setState(() {
@@ -81,6 +83,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void setWindow(int number) {
     controller.jumpToPage(number);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState listrecipes');
+    Tastydescendant.listrecipes(from: 46).then((list) {
+      print("length:${list.length}");
+      setState(() {
+        recipelist = list;
+      });
+    });
   }
 
   @override
@@ -123,7 +137,11 @@ class _MyHomePageState extends State<MyHomePage> {
               window = page;
             });
           },
-          children: pages,
+          children: [
+            Homepage(datalist: recipelist),
+            Libretepage(),
+            Settingspage()
+          ],
         ),
       ),
       bottomNavigationBar: SizedBox(
