@@ -28,6 +28,8 @@ class Tastydescendant extends ChangeNotifier {
   UnmodifiableListView<Recipe> get homepagefeed3 =>
       UnmodifiableListView(_homepagefeed3);
 
+  Tastydescendant();
+
   static const _autocomplete = '/tastydescendant/autocomplete',
       _detailrecipe = '/tastydescendant/detailrecipe',
       _listrecipes = '/tastydescendant/listrecipes',
@@ -146,5 +148,11 @@ class Tastydescendant extends ChangeNotifier {
       // If that call was not successful, throw an error.
       throw Exception('Failed to load post');
     }
+  }
+
+  factory Tastydescendant.initialized() {
+    Tastydescendant a = Tastydescendant();
+    a.loadhomepagefeatures();
+    return a;
   }
 }

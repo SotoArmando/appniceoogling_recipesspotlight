@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5550))),
           )),
       home: ChangeNotifierProvider(
-        create: (context) => Tastydescendant(),
+        create: (context) => Tastydescendant.initialized(),
         child: const MyHomePage(title: ""),
       ),
     );
@@ -135,11 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
               // ),
             ],
           )),
-      body: PageView.builder(
+      body: PageView(
         controller: controller,
-        itemCount: 3,
         onPageChanged: (page) => updateWindow(page),
-        itemBuilder: (context, index) => pages[index],
+        children: pages,
       ),
       bottomNavigationBar: SizedBox(
         height: coremeasure_9,

@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage>
   @override
   Widget build(BuildContext context) {
     var names = ["Chinese home food", "Greated Smoothie", "Greated Smile"];
-    Provider.of<Tastydescendant>(context, listen: false).loadhomepagefeatures();
+
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
