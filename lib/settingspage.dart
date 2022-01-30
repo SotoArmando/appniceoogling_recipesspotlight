@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class Settingspage extends StatefulWidget {
-  Settingspage({Key? key}) : super(key: key);
+  const Settingspage({Key? key}) : super(key: key);
 
   @override
   _SettingspageState createState() => _SettingspageState();

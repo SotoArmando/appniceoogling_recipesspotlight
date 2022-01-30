@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:niceoogling/descendants/recipe.dart';
@@ -30,55 +31,52 @@ class _convenientHorizontalScrollerState
     return Container(
       margin: EdgeInsets.only(bottom: coremeasure_0),
       height: containerheight,
-      child: SingleChildScrollView(
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          // This next line does the trick.
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            for (Recipe item in widget.datalist as List<Recipe>)
-              Container(
-                margin: EdgeInsets.only(
-                    left: item == 0
-                        ? coremeasure_0 * 0.54
-                        : coremeasure_0 * 0.945),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                alignment: Alignment.center,
-                                image: NetworkImage(item.thumbnail_url))),
-                        width: elementswidth,
-                      ),
+        itemBuilder: (context, item) => Container(
+          margin: EdgeInsets.only(
+              left: item == 0 ? coremeasure_0 * 0.54 : coremeasure_0 * 0.945),
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    image: CachedNetworkImageProvider(
+                      widget.datalist![item].thumbnail_url,
+                      maxWidth: widget.height.toInt(),
+                      maxHeight: elementswidth.toInt(),
                     ),
-                    Container(
-                      height: labelsize,
-                      width: elementswidth,
-                      alignment: Alignment.topLeft,
-                      color: Color(0xFFf4f4f4),
-                      child: ShaderMask(
-                        blendMode: BlendMode.srcIn,
-                        shaderCallback: (Rect bounds) {
-                          return LinearGradient(
-                                  colors: [Color(0xFF111100), Colors.black],
-                                  tileMode: TileMode.mirror,
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter)
-                              .createShader(bounds);
-                        },
-                        child: Text("${item.name}",
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ),
-                    ),
-                  ],
+                  )),
+                  width: elementswidth,
                 ),
               ),
-          ],
+              Container(
+                height: labelsize,
+                width: elementswidth,
+                alignment: Alignment.topLeft,
+                color: Color(0xFFf4f4f4),
+                child: ShaderMask(
+                  blendMode: BlendMode.srcIn,
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                            colors: [Color(0xFF000511), Colors.black],
+                            tileMode: TileMode.mirror,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)
+                        .createShader(bounds);
+                  },
+                  child: Text("${widget.datalist![item].name}",
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.bodyText1),
+                ),
+              ),
+            ],
+          ),
         ),
+        itemCount: widget.datalist!.length,
       ),
     );
   }

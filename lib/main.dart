@@ -8,6 +8,7 @@ import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/homepage.dart';
 import 'package:niceoogling/libretepage.dart';
 import 'package:niceoogling/settingspage.dart';
+import 'package:provider/provider.dart';
 
 import './math.dart';
 
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
             ),
             bodyText1: GoogleFonts.publicSans(
                 height: 1.2,
-                color: Colors.black.withOpacity(1),
+                color: Colors.black,
                 letterSpacing: .12590,
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
             bodyText2: TextStyle(
@@ -59,7 +60,10 @@ class MyApp extends StatelessWidget {
                 color: Colors.grey[500],
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5550))),
           )),
-      home: MyHomePage(title: ""),
+      home: ChangeNotifierProvider(
+        create: (context) => Tastydescendant(),
+        child: const MyHomePage(title: ""),
+      ),
     );
   }
 }
@@ -74,33 +78,26 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int window = 1;
-  List<Recipe> recipelist = [];
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
       PageController(viewportFraction: 1, keepPage: true, initialPage: 1);
   final names = ['Librete', 'Spotlight', 'Search'];
   final icons = [group_20, group_19, group_18];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   void setWindow(int number) {
     controller.jumpToPage(number);
+  }
+
+  void updateWindow(int page) {
+    setState(() {
+      window = page;
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    print('initState listrecipes');
-    Tastydescendant.listrecipes(from: 46).then((list) {
-      print("length:${list.length}");
-      setState(() {
-        recipelist = list;
-      });
-    });
   }
 
   @override
@@ -133,22 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
               // ),
             ],
           )),
-      body: GestureDetector(
-        child: PageView(
-          scrollBehavior: ScrollBehavior(
-              androidOverscrollIndicator: AndroidOverscrollIndicator.glow),
-          controller: controller,
-          onPageChanged: (int page) {
-            setState(() {
-              window = page;
-            });
-          },
-          children: [
-            Libretepage(),
-            Homepage(datalist: recipelist),
-            Settingspage()
-          ],
-        ),
+      body: PageView.builder(
+        controller: controller,
+        itemCount: 3,
+        onPageChanged: (page) => updateWindow(page),
+        itemBuilder: (context, index) =>
+            const [Libretepage(), Homepage(), Settingspage()][index],
       ),
       bottomNavigationBar: SizedBox(
         height: coremeasure_9,
@@ -187,6 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   .textTheme
                                   .bodyText2
                                   ?.copyWith(
+                                      fontWeight: FontWeight.w600,
                                       letterSpacing:
                                           1 * pow(1.1875, .125).toDouble(),
                                       color: index != window
