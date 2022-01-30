@@ -32,8 +32,9 @@ class _HomepageState extends State<Homepage>
               alignment: Alignment.topLeft,
               fit: BoxFit.fitWidth,
               image: AssetImage('assets/a.png'))),
-      child: ListView(
-        children: <Widget>[
+      child: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) => [
           Container(
             height: coremeasure_2,
             child:
@@ -111,7 +112,7 @@ class _HomepageState extends State<Homepage>
                 ],
               ),
             ),
-        ],
+        ][index],
       ),
     );
   }

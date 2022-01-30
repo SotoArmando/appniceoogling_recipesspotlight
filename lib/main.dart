@@ -18,6 +18,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -78,7 +79,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int window = 1;
-
+  final List<StatefulWidget> pages = [
+    Libretepage(),
+    Homepage(),
+    Settingspage()
+  ];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
       PageController(viewportFraction: 1, keepPage: true, initialPage: 1);
@@ -134,8 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
         controller: controller,
         itemCount: 3,
         onPageChanged: (page) => updateWindow(page),
-        itemBuilder: (context, index) =>
-            const [Libretepage(), Homepage(), Settingspage()][index],
+        itemBuilder: (context, index) => pages[index],
       ),
       bottomNavigationBar: SizedBox(
         height: coremeasure_9,

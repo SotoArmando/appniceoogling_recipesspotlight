@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+
 class Recipe {
   final String name;
   final String? description;
   final String? video_url;
   final String? original_video_url;
   final int created_at;
-  final String thumbnail_url;
+  final thumbnail_url;
   final int updated_at;
 
   const Recipe({

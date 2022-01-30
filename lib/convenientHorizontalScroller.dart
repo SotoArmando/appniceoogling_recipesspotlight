@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:niceoogling/Tastydescendant.dart';
 import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/gradienttext.dart';
 import 'package:niceoogling/math.dart';
@@ -11,8 +12,8 @@ class convenientHorizontalScroller extends StatefulWidget {
   List<Recipe>? datalist;
   convenientHorizontalScroller({
     Key? key,
-    double this.height = coremeasure_1,
-    double this.width = coremeasure_1,
+    this.height = coremeasure_1,
+    this.width = coremeasure_1,
     this.datalist,
   }) : super(key: key);
 
@@ -23,45 +24,65 @@ class convenientHorizontalScroller extends StatefulWidget {
 
 class _convenientHorizontalScrollerState
     extends State<convenientHorizontalScroller> {
+  final double labelsize = coremeasure_6;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    for (Recipe i in widget.datalist!) {
+      try {
+        precacheImage(
+          CachedNetworkImageProvider(
+            i.thumbnail_url,
+          ),
+          context,
+          onError: (exception, stackTrace) => {},
+        );
+      } catch (e) {
+        break;
+      }
+    }
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    double labelsize = coremeasure_6;
-    double containerheight = widget.height + labelsize;
-    double elementswidth = widget.width;
     return Container(
       margin: EdgeInsets.only(bottom: coremeasure_0),
-      height: containerheight,
+      height: widget.height + labelsize,
       child: ListView.builder(
+        cacheExtent: 3,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, item) => Container(
           margin: EdgeInsets.only(
               left: item == 0 ? coremeasure_0 * 0.54 : coremeasure_0 * 0.945),
           child: Column(
             children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    fit: BoxFit.cover,
-                    alignment: Alignment.center,
-                    image: CachedNetworkImageProvider(
-                      widget.datalist![item].thumbnail_url,
-                      maxWidth: widget.height.toInt(),
-                      maxHeight: elementswidth.toInt(),
-                    ),
-                  )),
-                  width: elementswidth,
+              Image(
+                height: widget.height,
+                width: widget.width,
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+                image: CachedNetworkImageProvider(
+                  Tastydescendant.imageURL(
+                      from: widget.datalist![item].thumbnail_url,
+                      width: widget.width * 3,
+                      height: widget.height * 3),
+                  maxWidth: widget.height.toInt(),
+                  maxHeight: widget.width.toInt(),
                 ),
               ),
               Container(
                 height: labelsize,
-                width: elementswidth,
+                width: widget.width,
                 alignment: Alignment.topLeft,
                 color: Color(0xFFf4f4f4),
                 child: ShaderMask(
                   blendMode: BlendMode.srcIn,
                   shaderCallback: (Rect bounds) {
-                    return LinearGradient(
+                    return const LinearGradient(
                             colors: [Color(0xFF000511), Colors.black],
                             tileMode: TileMode.mirror,
                             begin: Alignment.topCenter,

@@ -33,6 +33,7 @@ class Tastydescendant extends ChangeNotifier {
       _listrecipes = '/tastydescendant/listrecipes',
       _listtags = '/tastydescendant/listtags',
       _listfeeds = '/tastydescendant/listfeeds',
+      _getimage = '/tastydescendant/getimage',
       _listsimilarities = '/tastydescendant/listsimilarities';
 
   void loadhomepagefeatures() {
@@ -55,6 +56,11 @@ class Tastydescendant extends ChangeNotifier {
 
       loaded_homepagefeature0 = true;
     }
+  }
+
+  static String imageURL(
+      {String from = "", double width = 300, double height = 300}) {
+    return 'http://$baseurl$_getimage?from=$from&width=$width&height=$height';
   }
 
   Future<List<dynamic>> autocomplete() async {
