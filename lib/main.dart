@@ -120,6 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
           preferredSize:
               Size.fromHeight(coremeasure_7), // here the desired height
           child: AppBar(
+            shape:
+                Border(bottom: BorderSide(color: Color(0xFFEEEEF5), width: 1)),
             leading: TextButton(
               child: Icon(group_17,
                   color: Colors.black, size: coremeasure_2 * 1.002575),
@@ -127,12 +129,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             backgroundColor: Color(0xFFf4f4f4),
             centerTitle: true,
-            elevation: 1 / pow(1.1875, 4.97),
+            elevation: 0,
+            shadowColor: Color(0xFFEEEEFF),
             actions: [
-              // TextButton(
-              //   child: Icon(Icons.light, color: Colors.black87),
-              //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-              // ),
+              TextButton(
+                child: const Icon(group_1,
+                    size: coremeasure_2 * 1.003125, color: Colors.black87),
+                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+              ),
             ],
           )),
       body: PageView(

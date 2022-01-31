@@ -9,11 +9,13 @@ import 'package:niceoogling/math.dart';
 class convenientHorizontalScroller extends StatefulWidget {
   double height;
   double width;
+  bool bottomspace;
   List<Recipe>? datalist;
   convenientHorizontalScroller({
     Key? key,
     this.height = coremeasure_1,
     this.width = coremeasure_1,
+    this.bottomspace = true,
     this.datalist,
   }) : super(key: key);
 
@@ -50,7 +52,7 @@ class _convenientHorizontalScrollerState
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: coremeasure_0),
+      margin: EdgeInsets.only(bottom: widget.bottomspace ? coremeasure_0 : 0),
       height: widget.height + labelsize,
       child: ListView.builder(
         cacheExtent: 3,

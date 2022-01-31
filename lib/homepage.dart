@@ -35,11 +35,22 @@ class _HomepageState extends State<Homepage>
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) => [
-          Container(
-            height: coremeasure_2,
-            child:
-                Text("Spotlight", style: Theme.of(context).textTheme.headline2),
-            alignment: Alignment.center,
+          ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (Rect bounds) {
+              return const LinearGradient(
+                      colors: [Color(0xFF000511), Colors.black],
+                      tileMode: TileMode.mirror,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)
+                  .createShader(bounds);
+            },
+            child: Container(
+              height: coremeasure_2,
+              child: Text("Spotlight",
+                  style: Theme.of(context).textTheme.headline2),
+              alignment: Alignment.center,
+            ),
           ),
           Container(
             padding: EdgeInsets.only(bottom: coremeasure_0 * 0.24),
