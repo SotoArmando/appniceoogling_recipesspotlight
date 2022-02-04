@@ -121,13 +121,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Size.fromHeight(coremeasure_7), // here the desired height
           child: AppBar(
             shape:
-                Border(bottom: BorderSide(color: Color(0xFFEEEEF5), width: 1)),
+                Border(bottom: BorderSide(color: Color(0xFFE4E4E3), width: 1)),
             leading: TextButton(
               child: Icon(group_17,
                   color: Colors.black, size: coremeasure_2 * 1.002575),
               onPressed: () => _scaffoldKey.currentState?.openDrawer(),
             ),
-            backgroundColor: Color(0xFFf4f4f4),
+            backgroundColor: Colors.transparent,
             centerTitle: true,
             elevation: 0,
             shadowColor: Color(0xFFEEEEFF),
@@ -149,49 +149,55 @@ class _MyHomePageState extends State<MyHomePage> {
         child: BottomAppBar(
           color: Color(0xFFf4f4f4),
           elevation: 0,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              for (var index in [0, 1, 2])
-                Container(
-                  width: coremeasure_10,
-                  padding: EdgeInsets.only(
-                      bottom: coremeasure_0 / pow(1.1875, 54.700)),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                        splashFactory: NoSplash.splashFactory),
-                    onPressed: () => setWindow(index),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                                bottom: coremeasure_0 / pow(1.1875, 6.125)),
-                            child: Icon(
-                              icons[index],
-                              size: coremeasure_2 * 1.003125,
-                              color: index != window
-                                  ? Colors.grey.shade500
-                                  : Colors.black,
-                            ),
-                          ),
-                          Text(index == window ? names[index] : '',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing:
-                                          1 * pow(1.1875, .125).toDouble(),
-                                      color: index != window
-                                          ? Colors.grey.shade500
-                                          : Colors.black))
-                        ]),
-                  ),
-                )
-            ],
-          ),
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide(
+                          color: Color.fromARGB(255, 227, 227, 228),
+                          width: 1))),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  for (var index in [0, 1, 2])
+                    Container(
+                      width: coremeasure_10,
+                      padding: EdgeInsets.only(
+                          bottom: coremeasure_0 / pow(1.1875, 54.700)),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            splashFactory: NoSplash.splashFactory),
+                        onPressed: () => setWindow(index),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                    bottom: coremeasure_0 / pow(1.1875, 6.125)),
+                                child: Icon(
+                                  icons[index],
+                                  size: coremeasure_2 * 1.003125,
+                                  color: index != window
+                                      ? Colors.grey.shade500
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(index == window ? names[index] : '',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing:
+                                              1 * pow(1.1875, .125).toDouble(),
+                                          color: index != window
+                                              ? Colors.grey.shade500
+                                              : Colors.black))
+                            ]),
+                      ),
+                    )
+                ],
+              )),
         ),
       ),
     );

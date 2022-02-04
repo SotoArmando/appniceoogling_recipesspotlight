@@ -32,7 +32,7 @@ class _LibretepageState extends State<Libretepage> {
             Container(
               decoration: BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(width: 1, color: Color(0xFFEEEEF5)))),
+                      bottom: BorderSide(width: 1, color: Color(0xFFEBEBE4)))),
               child: Column(
                 children: [
                   Container(
@@ -79,45 +79,76 @@ class _LibretepageState extends State<Libretepage> {
                     .createShader(bounds);
               },
               child: Container(
+                margin: EdgeInsets.only(top: coremeasure_0 / pow(1.1875, 40)),
                 alignment: Alignment.center,
                 height: coremeasure_2,
                 child: Text(
-                  'Today',
+                  'Feb 4',
                   style: Theme.of(context).textTheme.headline2,
                 ),
               ),
             ),
-            for (var i in [0])
+            for (var i in [0, 1, 2])
               Container(
-                  padding: EdgeInsets.only(
-                      left: coremeasure_1, right: coremeasure_1),
-                  height: coremeasure_7,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(
-                      bottom: coremeasure_0 * 0.54,
-                      left: coremeasure_0 * 0.54,
-                      right: coremeasure_0 * 0.54),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1.0, color: Color(0xFFEEEEF5)),
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(coremeasure_2))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        [
-                          "Breakfast 7 AM\nLunch Mid-day\nDinner 6 PM",
-                        ][i],
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      Text(
-                        [
-                          "Hot Chocolate Bombs\nNew Year's Champagne\nBuffalo Chicken",
-                        ][i],
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ],
-                  )),
+                padding: EdgeInsets.only(
+                    left: coremeasure_1,
+                    right: coremeasure_1,
+                    bottom: coremeasure_0 / pow(1.1875, 10)),
+                height: coremeasure_6,
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(
+                    bottom: coremeasure_0 / pow(1.1875, 8),
+                    right: coremeasure_0 / pow(1.1875, 12),
+                    left: coremeasure_0 / pow(1.1875, 12)),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1.0, color: Color(0xFFE4E4E3)),
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(coremeasure_2))),
+                child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (Rect bounds) {
+                      return const LinearGradient(
+                              colors: [
+                            Color.fromARGB(255, 17, 14, 0),
+                            Color.fromARGB(255, 1, 0, 17)
+                          ],
+                              tileMode: TileMode.mirror,
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)
+                          .createShader(bounds);
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: coremeasure_0,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            [
+                              "10 Min Breakfast 7 AM",
+                              "Lunch Mid-day",
+                              "Dinner 6 PM"
+                            ][i],
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1),
+                          ),
+                        ),
+                        Text(
+                          [
+                            "Cheesecakes Espresso Martini Cheesecake For 2",
+                            "New Year's Champagne",
+                            "Buffalo Chicken"
+                          ][i],
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ],
+                    )),
+              ),
           ],
         ),
       ),

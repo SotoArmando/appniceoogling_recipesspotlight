@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:niceoogling/Tastydescendant.dart';
@@ -33,13 +35,16 @@ class _HomepageState extends State<Homepage>
               fit: BoxFit.fitWidth,
               image: AssetImage('assets/a.png'))),
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: 6,
         itemBuilder: (context, index) => [
+          SizedBox(
+            height: coremeasure_2,
+          ),
           ShaderMask(
             blendMode: BlendMode.srcIn,
             shaderCallback: (Rect bounds) {
               return const LinearGradient(
-                      colors: [Color(0xFF000511), Colors.black],
+                      colors: [Colors.black, Color(0xFF000511)],
                       tileMode: TileMode.mirror,
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)
@@ -53,10 +58,12 @@ class _HomepageState extends State<Homepage>
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: coremeasure_0 * 0.24),
+            padding: EdgeInsets.only(bottom: coremeasure_0 / pow(1.1875, 12.5)),
+            margin: EdgeInsets.only(
+                bottom: (coremeasure_0 / pow(1.1875, 10)) + coremeasure_3),
             decoration: BoxDecoration(
               border: Border(
-                  bottom: BorderSide(width: 0, color: Colors.transparent)),
+                  bottom: BorderSide(width: 1, color: Color(0xFFE4E4E3))),
             ),
             child: Column(
               children: [
@@ -65,6 +72,7 @@ class _HomepageState extends State<Homepage>
                     children: [
                       if (child != null) child,
                       convenientHorizontalScroller(
+                          bottomspace: false,
                           height: coremeasure_11,
                           width: coremeasure_11,
                           datalist: tastydescendant.homepagefeature0),
