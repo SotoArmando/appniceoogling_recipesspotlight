@@ -94,7 +94,8 @@ class _HomepageState extends State<Homepage>
                     height: coremeasure_6,
                     padding: EdgeInsets.only(
                         left: coremeasure_0 * 0.54,
-                        bottom: coremeasure_0,
+                        bottom:
+                            coremeasure_0 + (coremeasure_0 / pow(1.1875, 0.25)),
                         top: coremeasure_0),
                     child: ShaderMask(
                       blendMode: BlendMode.srcIn,
@@ -114,19 +115,17 @@ class _HomepageState extends State<Homepage>
                     alignment: Alignment.bottomLeft,
                   ),
                   Consumer<Tastydescendant>(
-                    builder: (context, tastydescendant, child) => Stack(
-                      children: [
-                        if (child != null) child,
-                        convenientHorizontalScroller(
-                            height: coremeasure_12,
-                            width: coremeasure_12,
-                            datalist: [
-                              tastydescendant.homepagefeed0,
-                              tastydescendant.homepagefeed1,
-                              tastydescendant.homepagefeed2
-                            ][index]),
-                      ],
-                    ),
+                    builder: (context, tastydescendant, child) =>
+                        (child != null)
+                            ? child
+                            : convenientHorizontalScroller(
+                                height: coremeasure_12,
+                                width: coremeasure_12,
+                                datalist: [
+                                  tastydescendant.homepagefeed0,
+                                  tastydescendant.homepagefeed1,
+                                  tastydescendant.homepagefeed2
+                                ][index]),
                   ),
                 ],
               ),

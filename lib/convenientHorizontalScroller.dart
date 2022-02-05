@@ -7,6 +7,7 @@ import 'package:niceoogling/Tastydescendant.dart';
 import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/gradienttext.dart';
 import 'package:niceoogling/math.dart';
+import 'package:niceoogling/viewdescendants/Recipeascendant.dart';
 
 class convenientHorizontalScroller extends StatefulWidget {
   final double height;
@@ -31,7 +32,7 @@ class convenientHorizontalScroller extends StatefulWidget {
 
 class _convenientHorizontalScrollerState
     extends State<convenientHorizontalScroller> {
-  final double labelsize = coremeasure_6;
+  final double labelsize = coremeasure_7;
 
   @override
   void initState() {
@@ -63,62 +64,15 @@ class _convenientHorizontalScrollerState
         cacheExtent: 3,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, item) => Container(
-          margin: EdgeInsets.only(
-              left: item == 0
-                  ? coremeasure_0 / pow(1.1875, 4)
-                  : coremeasure_0 / pow(1.1875, 4)),
-          child: Column(
-            children: [
-              Image(
+            margin: EdgeInsets.only(
+                left: item == 0
+                    ? coremeasure_0 / pow(1.1875, 4)
+                    : coremeasure_0 / pow(1.1875, 4)),
+            child: Recipeascendant(
+                recipe: widget.datalist![item],
                 height: widget.height,
                 width: widget.width,
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
-                image: CachedNetworkImageProvider(
-                  Tastydescendant.imageURL(
-                      from: widget.datalist![item].thumbnail_url,
-                      width: widget.width * 3,
-                      height: widget.height * 3),
-                  maxWidth: widget.height.toInt(),
-                  maxHeight: widget.width.toInt(),
-                ),
-              ),
-              Container(
-                height: labelsize,
-                width: widget.width,
-                alignment: Alignment.topLeft,
-                color: Color(0xFFf4f4f4),
-                child: ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (Rect bounds) {
-                      return const LinearGradient(
-                              colors: [Color(0xFF000814), Color(0xFF000808)],
-                              tileMode: TileMode.mirror,
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter)
-                          .createShader(bounds);
-                    },
-                    child: ShaderMask(
-                      blendMode: BlendMode.srcIn,
-                      shaderCallback: (Rect bounds) {
-                        return LinearGradient(
-                                colors: [
-                              Color(0xFF111100),
-                              Color.fromARGB(255, 1, 0, 17)
-                            ],
-                                tileMode: TileMode.mirror,
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter)
-                            .createShader(bounds);
-                      },
-                      child: Text("${widget.datalist![item].name}",
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.bodyText1),
-                    )),
-              ),
-            ],
-          ),
-        ),
+                labelsize: labelsize)),
         itemCount: widget.datalist!.length,
       ),
     );

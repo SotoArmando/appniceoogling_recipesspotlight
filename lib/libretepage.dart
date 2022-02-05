@@ -47,7 +47,7 @@ class _LibretepageState extends State<Libretepage> {
                                 end: Alignment.bottomCenter)
                             .createShader(bounds);
                       },
-                      child: Text("Librete",
+                      child: Text("Sweet Breakfast Librete",
                           style: Theme.of(context).textTheme.headline2),
                     ),
                     alignment: Alignment.center,
@@ -59,7 +59,7 @@ class _LibretepageState extends State<Libretepage> {
                         convenientHorizontalScroller(
                           height: coremeasure_11,
                           width: coremeasure_11,
-                          datalist: tastydescendant.homepagefeed0,
+                          datalist: tastydescendant.homepagelibrete0,
                           bottomspace: false,
                         ),
                       ],
@@ -124,19 +124,34 @@ class _LibretepageState extends State<Libretepage> {
                         Container(
                           height: coremeasure_0,
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            [
-                              "10 Min Breakfast 7 AM",
-                              "Lunch Mid-day",
-                              "Dinner 6 PM"
-                            ][i],
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1!
-                                .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1),
-                          ),
+                          child: Row(children: [
+                            Container(
+                              width: coremeasure_7,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "10 min",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1),
+                              ),
+                            ),
+                            Text(
+                              [
+                                "Breakfast 7 AM",
+                                "Lunch Mid-day",
+                                "Dinner 6 PM"
+                              ][i],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 1),
+                            )
+                          ]),
                         ),
                         Text(
                           [

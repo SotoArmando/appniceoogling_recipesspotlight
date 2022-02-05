@@ -10,6 +10,7 @@ const baseurl = '127.0.0.1:3000';
 
 class Tastydescendant extends ChangeNotifier {
   List<Recipe> _homepagefeature0 = [];
+  List<Recipe> _homepagelibrete0 = [];
   List<Recipe> _homepagefeed0 = [];
   List<Recipe> _homepagefeed1 = [];
   List<Recipe> _homepagefeed2 = [];
@@ -17,6 +18,8 @@ class Tastydescendant extends ChangeNotifier {
 
   bool loaded_homepagefeature0 = false;
 
+  UnmodifiableListView<Recipe> get homepagelibrete0 =>
+      UnmodifiableListView(_homepagelibrete0);
   UnmodifiableListView<Recipe> get homepagefeature0 =>
       UnmodifiableListView(_homepagefeature0);
   UnmodifiableListView<Recipe> get homepagefeed0 =>
@@ -40,20 +43,24 @@ class Tastydescendant extends ChangeNotifier {
 
   void loadhomepagefeatures() {
     if (loaded_homepagefeature0 == false) {
-      listrecipes(from: 56, size: 4)
+      listrecipes(from: 0, size: 4, tags: "lunch")
           .then((value) => _homepagefeature0 = value)
           .then((value) => notifyListeners());
-      listrecipes(from: 31, size: 4)
+      listrecipes(from: 31, size: 4, tags: "chinese")
           .then((value) => _homepagefeed0 = value)
           .then((value) => notifyListeners());
-      listrecipes(from: 36, size: 4)
+      listrecipes(from: 0, size: 4, tags: "drinks")
           .then((value) => _homepagefeed1 = value)
           .then((value) => notifyListeners());
-      listrecipes(from: 19, size: 4)
+      listrecipes(from: 40, size: 4, tags: "drinks")
           .then((value) => _homepagefeed2 = value)
           .then((value) => notifyListeners());
       listrecipes(from: 46, size: 4)
           .then((value) => _homepagefeed3 = value)
+          .then((value) => notifyListeners());
+
+      listrecipes(from: 0, tags: "mc_breakfast_sweet")
+          .then((value) => _homepagelibrete0 = value)
           .then((value) => notifyListeners());
 
       loaded_homepagefeature0 = true;

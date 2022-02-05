@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                   fontSize: coremeasure_5,
                   color: Colors.black,
                   wordSpacing: coremeasure_0 / (pow(1.1875, 3)),
-                  letterSpacing: -.85 + .9225),
+                  letterSpacing: coremeasure_0 / (pow(1.1875, 18.9))),
             ),
             headline2: GoogleFonts.publicSans(
               textStyle: TextStyle(
@@ -48,13 +48,13 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 fontSize: coremeasure_0,
                 color: Colors.black.withOpacity(0.99705),
-                letterSpacing: 1.5750,
+                letterSpacing: coremeasure_0 / (pow(1.1875, 13.7791)),
               ),
             ),
             bodyText1: GoogleFonts.publicSans(
                 height: 1.2,
                 color: Colors.black,
-                letterSpacing: .12590,
+                letterSpacing: coremeasure_0 / (pow(1.1875, 28.541)),
                 fontSize: coremeasure_0 / (pow(1.1875, 1.5925))),
             bodyText2: TextStyle(
                 height: 1,
@@ -161,41 +161,57 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   for (var index in [0, 1, 2])
                     Container(
-                      width: coremeasure_10,
-                      padding: EdgeInsets.only(
-                          bottom: coremeasure_0 / pow(1.1875, 54.700)),
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                            splashFactory: NoSplash.splashFactory),
-                        onPressed: () => setWindow(index),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                    bottom: coremeasure_0 / pow(1.1875, 6.125)),
-                                child: Icon(
-                                  icons[index],
-                                  size: coremeasure_2 * 1.003125,
-                                  color: index != window
-                                      ? Colors.grey.shade500
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(index == window ? names[index] : '',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2
-                                      ?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing:
-                                              1 * pow(1.1875, .125).toDouble(),
-                                          color: index != window
-                                              ? Colors.grey.shade500
-                                              : Colors.black))
-                            ]),
-                      ),
-                    )
+                        width: coremeasure_10,
+                        padding: EdgeInsets.only(
+                            bottom: coremeasure_0 / pow(1.1875, 54.700)),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              splashFactory: NoSplash.splashFactory),
+                          onPressed: () => setWindow(index),
+                          child: ShaderMask(
+                            blendMode: BlendMode.srcIn,
+                            shaderCallback: (Rect bounds) {
+                              return LinearGradient(
+                                      colors: index != window
+                                          ? [
+                                              Color.fromARGB(
+                                                  255, 217, 217, 200),
+                                              Color.fromARGB(255, 201, 200, 219)
+                                            ]
+                                          : [
+                                              Color.fromARGB(255, 17, 17, 0),
+                                              Color.fromARGB(255, 1, 0, 19)
+                                            ],
+                                      tileMode: TileMode.mirror,
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter)
+                                  .createShader(bounds);
+                            },
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        bottom:
+                                            coremeasure_0 / pow(1.1875, 6.125)),
+                                    child: Icon(icons[index],
+                                        size: coremeasure_2 * 1.003125,
+                                        color: Colors.grey.shade500),
+                                  ),
+                                  Text(index == window ? names[index] : '',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1 *
+                                                  pow(1.1875, .125).toDouble(),
+                                              color: index != window
+                                                  ? Colors.grey.shade500
+                                                  : Colors.black))
+                                ]),
+                          ),
+                        ))
                 ],
               )),
         ),
