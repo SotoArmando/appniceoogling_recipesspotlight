@@ -1,6 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:niceoogling/Tastydescendant.dart';
+import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/math.dart';
+import 'package:niceoogling/modelascendants/Historyascendant.dart';
+import 'package:provider/provider.dart';
 
 class Settingspage extends StatefulWidget {
   const Settingspage({Key? key}) : super(key: key);
@@ -15,27 +22,34 @@ class _SettingspageState extends State<Settingspage> {
     return Container(
       child: Column(
         children: [
-          Container(
-            height: coremeasure_9,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                border:
-                    Border(bottom: BorderSide(color: Colors.blue, width: 1))),
-          ),
-          Container(
-            height: coremeasure_9,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                border:
-                    Border(bottom: BorderSide(color: Colors.blue, width: 1))),
+          Consumer<Tastydescendant>(
+            builder: (context, tastydescendant, child) => Stack(
+              children: [
+                if (child != null) child,
+                Column(
+                  children: [
+                    for (Recipe i in tastydescendant.homepagefeature0.take(2))
+                      HistoryAscendant(recipe: i),
+                  ],
+                )
+              ],
+            ),
           ),
           for (String i in ["Settings", "About us", "License"])
             Container(
-              height: coremeasure_6,
+              height: coremeasure_6 + (coremeasure_0 / pow(1.1875, 1)),
               padding: EdgeInsets.only(left: coremeasure_0),
               child: Text(
                 i,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: GoogleFonts.publicSans(
+                  textStyle: TextStyle(
+                    height: 1,
+                    fontWeight: FontWeight.w300,
+                    fontSize: coremeasure_1,
+                    color: Colors.black.withOpacity(0.99705),
+                    letterSpacing: coremeasure_0 / (pow(1.1875, 15)),
+                  ),
+                ),
                 textAlign: TextAlign.start,
               ),
               alignment: Alignment.centerLeft,

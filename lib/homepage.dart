@@ -93,15 +93,18 @@ class _HomepageState extends State<Homepage>
                   Container(
                     height: coremeasure_6,
                     padding: EdgeInsets.only(
-                        left: coremeasure_0 * 0.54,
-                        bottom:
-                            coremeasure_0 + (coremeasure_0 / pow(1.1875, 0.25)),
+                        left: coremeasure_0 / pow(1.1875, 0.25),
+                        bottom: coremeasure_0 +
+                            (coremeasure_0 / pow(1.1875, 0.175)),
                         top: coremeasure_0),
                     child: ShaderMask(
                       blendMode: BlendMode.srcIn,
                       shaderCallback: (Rect bounds) {
                         return LinearGradient(
-                                colors: [Color(0xFF111100), Colors.black],
+                                colors: [
+                              Color.fromARGB(255, 038, 038, 017),
+                              Color.fromARGB(255, 026, 022, 077)
+                            ],
                                 tileMode: TileMode.mirror,
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter)

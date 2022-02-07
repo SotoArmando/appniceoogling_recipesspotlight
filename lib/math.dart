@@ -34,6 +34,7 @@ const double coremeasure_0 = 17,
 
 const _kFontFam = 'MyFlutterApp';
 const String? _kFontPkg = null;
+
 const IconData group_17 =
     IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 const IconData group_18 =
@@ -42,9 +43,7 @@ const IconData group_19 =
     IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 const IconData group_20 =
     IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-const IconData lightbulboutline =
-    IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 const IconData group_22 =
+    IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+const IconData group_25 =
     IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-const IconData group_1 =
-    IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);

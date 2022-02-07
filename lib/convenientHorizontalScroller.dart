@@ -7,7 +7,7 @@ import 'package:niceoogling/Tastydescendant.dart';
 import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/gradienttext.dart';
 import 'package:niceoogling/math.dart';
-import 'package:niceoogling/viewdescendants/Recipeascendant.dart';
+import 'package:niceoogling/modelascendants/Recipeascendant.dart';
 
 class convenientHorizontalScroller extends StatefulWidget {
   final double height;

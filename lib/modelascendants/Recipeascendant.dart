@@ -24,18 +24,23 @@ class Recipeascendant extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image(
-          height: height,
-          width: width,
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-          image: CachedNetworkImageProvider(
-            Tastydescendant.imageURL(
-                from: recipe.thumbnail_url,
-                width: width * 3,
-                height: height * 3),
-            maxWidth: height.toInt(),
-            maxHeight: width.toInt(),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed('activities/readrecipe');
+          },
+          child: Image(
+            height: height,
+            width: width,
+            fit: BoxFit.cover,
+            alignment: Alignment.center,
+            image: CachedNetworkImageProvider(
+              Tastydescendant.imageURL(
+                  from: recipe.thumbnail_url,
+                  width: width * 3,
+                  height: height * 3),
+              maxWidth: height.toInt(),
+              maxHeight: width.toInt(),
+            ),
           ),
         ),
         Container(
@@ -48,29 +53,21 @@ class Recipeascendant extends StatelessWidget {
               blendMode: BlendMode.srcIn,
               shaderCallback: (Rect bounds) {
                 return const LinearGradient(
-                        colors: [Color(0xFF000814), Color(0xFF000808)],
+                        colors: [
+                      Color.fromARGB(255, 038, 038, 017),
+                      Color.fromARGB(255, 026, 022, 077)
+                    ],
                         tileMode: TileMode.mirror,
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter)
                     .createShader(bounds);
               },
-              child: ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (Rect bounds) {
-                  return LinearGradient(
-                          colors: [Color(0xFF111100), Color(0xFF7E7AB1)],
-                          tileMode: TileMode.mirror,
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter)
-                      .createShader(bounds);
-                },
-                child: Text("${recipe.name}",
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(color: Colors.black)),
-              )),
+              child: Text("${recipe.name}",
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: Colors.black))),
         ),
       ],
     );

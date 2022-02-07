@@ -24,6 +24,7 @@ class _LibretepageState extends State<Libretepage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color(0xFFf4f4f4),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

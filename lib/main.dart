@@ -1,12 +1,15 @@
 import 'dart:html';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:niceoogling/Tastydescendant.dart';
+import 'package:niceoogling/convenientNestedNavigator.dart';
 import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/homepage.dart';
 import 'package:niceoogling/libretepage.dart';
+import 'package:niceoogling/recipeportascendant.dart';
 import 'package:niceoogling/settingspage.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +29,24 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo ',
       theme: ThemeData(
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.deepPurple, //  <-- dark color
+            textTheme: ButtonTextTheme
+                .primary, //  <-- this auto selects the right color
+          ),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.iOS: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+          }),
           // Define the default brightness and colors.
-
+          textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                    Colors.black,
+                  ),
+                  overlayColor: MaterialStateProperty.all<Color>(
+                    Colors.orange,
+                  ))),
           // Define the default font family.
           fontFamily: 'Lator',
           // Define the default `TextTheme`. Use this to specify the default
@@ -79,10 +98,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int window = 1;
-  final List<StatefulWidget> pages = [
+  final List<Widget> pages = [
     Libretepage(),
     Homepage(),
-    Settingspage()
+    Settingspage(),
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
@@ -123,8 +142,21 @@ class _MyHomePageState extends State<MyHomePage> {
             shape:
                 Border(bottom: BorderSide(color: Color(0xFFE4E4E3), width: 1)),
             leading: TextButton(
-              child: Icon(group_17,
-                  color: Colors.black, size: coremeasure_2 * 1.002575),
+              child: ShaderMask(
+                  blendMode: BlendMode.srcIn,
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                            colors: [
+                          Color.fromARGB(255, 17, 17, 0),
+                          Color.fromARGB(255, 1, 0, 19)
+                        ],
+                            tileMode: TileMode.mirror,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)
+                        .createShader(bounds);
+                  },
+                  child: Icon(group_17,
+                      color: Colors.black, size: coremeasure_2 * 1.002575)),
               onPressed: () => _scaffoldKey.currentState?.openDrawer(),
             ),
             backgroundColor: Colors.transparent,
@@ -133,16 +165,50 @@ class _MyHomePageState extends State<MyHomePage> {
             shadowColor: Color(0xFFEEEEFF),
             actions: [
               TextButton(
-                child: const Icon(group_1,
-                    size: coremeasure_2 * 1.003125, color: Colors.black87),
+                child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (Rect bounds) {
+                      return LinearGradient(
+                              colors: [
+                            Color.fromARGB(255, 17, 17, 0),
+                            Color.fromARGB(255, 1, 0, 19)
+                          ],
+                              tileMode: TileMode.mirror,
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter)
+                          .createShader(bounds);
+                    },
+                    child: const Icon(group_25,
+                        size: coremeasure_2 * 1.003125, color: Colors.black87)),
                 onPressed: () => _scaffoldKey.currentState?.openDrawer(),
               ),
             ],
           )),
-      body: PageView(
-        controller: controller,
-        onPageChanged: (page) => updateWindow(page),
-        children: pages,
+      body: Navigator(
+        initialRoute: '/',
+        onGenerateRoute: (RouteSettings settings) {
+          WidgetBuilder builder;
+          switch (settings.name) {
+            case '/':
+              builder = (BuildContext context) => Container(
+                    color: Color(0xFFf4f4f4),
+                    child: PageView(
+                      controller: controller,
+                      onPageChanged: (page) => updateWindow(page),
+                      children: pages,
+                    ),
+                  );
+              break;
+            case 'activities/readrecipe':
+              builder = (BuildContext context) => RecipeportAscendant();
+              break;
+            default:
+              throw Exception('Invalid route: ${settings.name}');
+          }
+
+          // var a = PageRouteBuilder(pageBuilder: builder, settings: settings);
+          return MaterialPageRoute<void>(builder: builder, settings: settings);
+        },
       ),
       bottomNavigationBar: SizedBox(
         height: coremeasure_9,
