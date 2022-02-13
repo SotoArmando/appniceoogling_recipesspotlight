@@ -35,22 +35,47 @@ class _SettingspageState extends State<Settingspage> {
               ],
             ),
           ),
-          for (String i in ["Settings", "About us", "License"])
+          SizedBox(
+            height: coremeasure_1,
+            width: double.infinity,
+          ),
+          for (String i in [
+            "Settings",
+            "About us",
+            "License",
+            "History",
+            "Close Session"
+          ])
             Container(
-              height: coremeasure_6 + (coremeasure_0 / pow(1.1875, 1)),
+              height: coremeasure_6 +
+                  (coremeasure_0 / pow(1.1875, i == "Settings" ? 9 : 1)),
               padding: EdgeInsets.only(left: coremeasure_0),
-              child: Text(
-                i,
-                style: GoogleFonts.publicSans(
-                  textStyle: TextStyle(
-                    height: 1,
-                    fontWeight: FontWeight.w300,
-                    fontSize: coremeasure_1,
-                    color: Colors.black.withOpacity(0.99705),
-                    letterSpacing: coremeasure_0 / (pow(1.1875, 15)),
+              child: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (Rect bounds) {
+                  return LinearGradient(
+                          colors: [
+                        Color.fromARGB(255, 038, 038, 017),
+                        Color.fromARGB(255, 026, 022, 077)
+                      ],
+                          tileMode: TileMode.mirror,
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter)
+                      .createShader(bounds);
+                },
+                child: Text(
+                  i,
+                  style: GoogleFonts.publicSans(
+                    textStyle: TextStyle(
+                      height: 1,
+                      fontWeight: FontWeight.w400,
+                      fontSize: coremeasure_0 * pow(1.1875, 0.33 + 1 / 3),
+                      color: Colors.black.withOpacity(0.99705),
+                      letterSpacing: coremeasure_0 / (pow(1.1875, 14)),
+                    ),
                   ),
+                  textAlign: TextAlign.start,
                 ),
-                textAlign: TextAlign.start,
               ),
               alignment: Alignment.centerLeft,
             )

@@ -33,7 +33,9 @@ class _LibretepageState extends State<Libretepage> {
             Container(
               decoration: BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(width: 1, color: Color(0xFFEBEBE4)))),
+                      bottom: BorderSide(
+                          width: coremeasure_0 / pow(1.1875, 15),
+                          color: Color(0xFFEBEBE4)))),
               child: Column(
                 children: [
                   Container(
@@ -102,7 +104,9 @@ class _LibretepageState extends State<Libretepage> {
                     right: coremeasure_0 / pow(1.1875, 12),
                     left: coremeasure_0 / pow(1.1875, 12)),
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1.0, color: Color(0xFFE4E4E3)),
+                    border: Border.all(
+                        width: coremeasure_0 / pow(1.1875, 15),
+                        color: Color(0xFFE4E4E3)),
                     borderRadius:
                         BorderRadius.all(Radius.circular(coremeasure_2))),
                 child: ShaderMask(

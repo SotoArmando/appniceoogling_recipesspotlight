@@ -37,9 +37,6 @@ class _HomepageState extends State<Homepage>
       child: ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) => [
-          SizedBox(
-            height: coremeasure_2,
-          ),
           ShaderMask(
             blendMode: BlendMode.srcIn,
             shaderCallback: (Rect bounds) {
@@ -63,7 +60,9 @@ class _HomepageState extends State<Homepage>
                 bottom: (coremeasure_0 / pow(1.1875, 10)) + coremeasure_3),
             decoration: BoxDecoration(
               border: Border(
-                  bottom: BorderSide(width: 1, color: Color(0xFFE4E4E3))),
+                  bottom: BorderSide(
+                      width: coremeasure_0 / pow(1.1875, 15),
+                      color: Color(0xFFE4E4E3))),
             ),
             child: Column(
               children: [

@@ -20,8 +20,10 @@ class HistoryAscendant extends StatelessWidget {
       height: height,
       margin: EdgeInsets.only(left: coremeasure_0 / pow(1.1875, 10.75)),
       decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(width: 1, color: Color(0xFFE4E4E3)))),
+          border: Border(
+              bottom: BorderSide(
+                  width: coremeasure_0 / pow(1.1875, 15),
+                  color: Color(0xFFE4E4E3)))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -73,7 +75,7 @@ class HistoryAscendant extends StatelessWidget {
                   ),
                   Container(
                     width: coremeasure_14,
-                    alignment: Alignment.center,
+                    alignment: Alignment.centerLeft,
                     margin: EdgeInsets.only(
                         bottom: coremeasure_0 / pow(1.1875, 14)),
                     child: ShaderMask(

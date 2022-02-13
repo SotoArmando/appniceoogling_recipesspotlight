@@ -10,6 +10,7 @@ import 'package:niceoogling/descendants/recipe.dart';
 import 'package:niceoogling/homepage.dart';
 import 'package:niceoogling/libretepage.dart';
 import 'package:niceoogling/recipeportascendant.dart';
+import 'package:niceoogling/search.dart';
 import 'package:niceoogling/settingspage.dart';
 import 'package:provider/provider.dart';
 
@@ -101,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> pages = [
     Libretepage(),
     Homepage(),
-    Settingspage(),
+    Searchscreen(),
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
@@ -139,28 +140,59 @@ class _MyHomePageState extends State<MyHomePage> {
           preferredSize:
               Size.fromHeight(coremeasure_7), // here the desired height
           child: AppBar(
-            shape:
-                Border(bottom: BorderSide(color: Color(0xFFE4E4E3), width: 1)),
-            leading: TextButton(
-              child: ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (Rect bounds) {
-                    return LinearGradient(
-                            colors: [
-                          Color.fromARGB(255, 17, 17, 0),
-                          Color.fromARGB(255, 1, 0, 19)
-                        ],
-                            tileMode: TileMode.mirror,
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter)
-                        .createShader(bounds);
-                  },
-                  child: Icon(group_17,
-                      color: Colors.black, size: coremeasure_2 * 1.002575)),
-              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-            ),
+            shape: Border(
+                bottom: BorderSide(
+                    color: Color(0xFFE4E4E3),
+                    width: coremeasure_0 / pow(1.1875, 15))),
             backgroundColor: Colors.transparent,
-            centerTitle: true,
+            flexibleSpace: Container(
+              height: coremeasure_7,
+              padding: EdgeInsets.only(left: coremeasure_0 / pow(1.1875, 5)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: coremeasure_7,
+                    width: coremeasure_5,
+                    margin: EdgeInsets.only(
+                        right: coremeasure_0 / pow(1.1875, 10.75)),
+                    alignment: Alignment.center,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(Tastydescendant.imageURL(
+                                  from:
+                                      "https://lh3.googleusercontent.com/cqhclZ29NEXuFjCpwH-qkcATVUVqv6KBZ9cGEZSECJO7js8g884OxhTz3HhUgy9Nm0fk=s85"))),
+                          shape: BoxShape.circle),
+                      width: coremeasure_4,
+                      height: coremeasure_4,
+                    ),
+                  ),
+                  ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) {
+                        return LinearGradient(
+                                colors: [
+                              Color.fromARGB(255, 17, 17, 0),
+                              Color.fromARGB(255, 1, 0, 19)
+                            ],
+                                tileMode: TileMode.mirror,
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter)
+                            .createShader(bounds);
+                      },
+                      child: Text(
+                        "",
+                        style: Theme.of(context).textTheme.headline2,
+                      )),
+                ],
+              ),
+            ),
+            leadingWidth: 0,
+            centerTitle: false,
+            automaticallyImplyLeading: false,
+            toolbarHeight: coremeasure_7,
             elevation: 0,
             shadowColor: Color(0xFFEEEEFF),
             actions: [
@@ -191,6 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
           switch (settings.name) {
             case '/':
               builder = (BuildContext context) => Container(
+                    padding: EdgeInsets.only(top: coremeasure_0),
                     color: Color(0xFFf4f4f4),
                     child: PageView(
                       controller: controller,
@@ -220,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: Border(
                       top: BorderSide(
                           color: Color.fromARGB(255, 227, 227, 228),
-                          width: 1))),
+                          width: coremeasure_0 / pow(1.1875, 15)))),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
