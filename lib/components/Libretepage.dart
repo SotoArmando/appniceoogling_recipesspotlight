@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:niceoogling/components/convenientHorizontalScroller.dart';
 import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/convenientHorizontalScroller.dart';
 import 'package:niceoogling/resource/math.dart';
 import 'package:provider/provider.dart';
 
