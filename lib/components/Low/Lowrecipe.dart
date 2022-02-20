@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/math.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/context/descendants/recipe.dart';
+import 'package:niceoogling/resource/math.dart';
 
-class Recipeascendant extends StatelessWidget {
-  const Recipeascendant(
+class Lowrecipe extends StatelessWidget {
+  const Lowrecipe(
       {Key? key,
       required this.recipe,
       required this.height,

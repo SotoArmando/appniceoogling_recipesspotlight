@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/math.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/context/descendants/recipe.dart';
+import 'package:niceoogling/resource/math.dart';
 
-class HistoryAscendant extends StatelessWidget {
+class Lowhistory extends StatelessWidget {
   final Recipe recipe;
 
-  HistoryAscendant({Key? key, required this.recipe}) : super(key: key);
+  Lowhistory({Key? key, required this.recipe}) : super(key: key);
 
   final height = coremeasure_8;
   final imgheight = coremeasure_7 - (coremeasure_0 / pow(1.1875, 9));

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RecipeportAscendant extends StatelessWidget {
-  const RecipeportAscendant({Key? key}) : super(key: key);
+class Highrecipe extends StatelessWidget {
+  const Highrecipe({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

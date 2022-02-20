@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/gradienttext.dart';
-import 'package:niceoogling/math.dart';
-import 'package:niceoogling/modelascendants/Recipeascendant.dart';
+import 'package:niceoogling/components/Low/Lowrecipe.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/context/descendants/recipe.dart';
+import 'package:niceoogling/resource/math.dart';
+
 
 class convenientHorizontalScroller extends StatefulWidget {
   final double height;
@@ -68,7 +68,7 @@ class _convenientHorizontalScrollerState
                 left: item == 0
                     ? coremeasure_0 / pow(1.1875, 4)
                     : coremeasure_0 / pow(1.1875, 4)),
-            child: Recipeascendant(
+            child: Lowrecipe(
                 recipe: widget.datalist![item],
                 height: widget.height,
                 width: widget.width,

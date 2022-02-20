@@ -4,17 +4,17 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/convenientNestedNavigator.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/homepage.dart';
-import 'package:niceoogling/libretepage.dart';
-import 'package:niceoogling/recipeportascendant.dart';
-import 'package:niceoogling/search.dart';
-import 'package:niceoogling/settingspage.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/components/Homepage.dart';
+import 'package:niceoogling/components/Libretepage.dart';
+import 'package:niceoogling/components/High/Highrecipe.dart';
+import 'package:niceoogling/components/Searchpage.dart';
+
+import 'package:niceoogling/resource/math.dart';
+
 import 'package:provider/provider.dart';
 
-import './math.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> pages = [
     Libretepage(),
     Homepage(),
-    Searchscreen(),
+    Searchpage(),
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final PageController controller =
@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
           switch (settings.name) {
             case '/':
               builder = (BuildContext context) => Container(
-                    padding: EdgeInsets.only(top: coremeasure_0),
+                    // padding: EdgeInsets.only(top: coremeasure_0),
                     color: Color(0xFFf4f4f4),
                     child: PageView(
                       controller: controller,
@@ -233,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
               break;
             case 'activities/readrecipe':
-              builder = (BuildContext context) => RecipeportAscendant();
+              builder = (BuildContext context) => Highrecipe();
               break;
             default:
               throw Exception('Invalid route: ${settings.name}');

@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/math.dart';
-import 'package:niceoogling/modelascendants/Historyascendant.dart';
+import 'package:niceoogling/components/Low/Lowhistory.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/context/descendants/recipe.dart';
+import 'package:niceoogling/resource/math.dart';
 import 'package:provider/provider.dart';
 
 class Settingspage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _SettingspageState extends State<Settingspage> {
                 Column(
                   children: [
                     for (Recipe i in tastydescendant.homepagefeature0.take(2))
-                      HistoryAscendant(recipe: i),
+                      Lowhistory(recipe: i),
                   ],
                 )
               ],

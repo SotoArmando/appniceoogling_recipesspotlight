@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:niceoogling/Tastydescendant.dart';
-import 'package:niceoogling/convenientHorizontalScroller.dart';
-import 'package:niceoogling/descendants/recipe.dart';
-import 'package:niceoogling/math.dart';
+import 'package:niceoogling/components/convenientHorizontalScroller.dart';
+import 'package:niceoogling/context/Tastydescendant.dart';
+import 'package:niceoogling/resource/math.dart';
 import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
@@ -35,7 +34,7 @@ class _HomepageState extends State<Homepage>
               fit: BoxFit.fitWidth,
               image: AssetImage('assets/a.png'))),
       child: ListView.builder(
-        itemCount: 6,
+        itemCount: 5,
         itemBuilder: (context, index) => [
           ShaderMask(
             blendMode: BlendMode.srcIn,
@@ -48,7 +47,7 @@ class _HomepageState extends State<Homepage>
                   .createShader(bounds);
             },
             child: Container(
-              height: coremeasure_2,
+              height: coremeasure_3,
               child: Text("Spotlight",
                   style: Theme.of(context).textTheme.headline2),
               alignment: Alignment.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:niceoogling/homepage.dart';
-import 'package:niceoogling/libretepage.dart';
-import 'package:niceoogling/settingspage.dart';
+import 'package:niceoogling/components/Homepage.dart';
+import 'package:niceoogling/components/Libretepage.dart';
+import 'package:niceoogling/components/Settingspage.dart';
 
 class FirstRoute extends StatelessWidget {
   const FirstRoute({Key? key}) : super(key: key);
