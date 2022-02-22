@@ -222,15 +222,11 @@ class _MyHomePageState extends State<MyHomePage> {
           WidgetBuilder builder;
           switch (settings.name) {
             case '/':
-              builder = (BuildContext context) => Container(
-                    // padding: EdgeInsets.only(top: coremeasure_0),
-                    color: Color(0xFFf4f4f4),
-                    child: PageView(
+              builder = (BuildContext context) => PageView(
                       controller: controller,
                       onPageChanged: (page) => updateWindow(page),
                       children: pages,
-                    ),
-                  );
+                    );
               break;
             case 'activities/readrecipe':
               builder = (BuildContext context) => Highrecipe();

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:niceoogling/components/Low/Lowtag.dart';
 import 'package:niceoogling/context/Tastydescendant.dart';
 import 'package:niceoogling/resource/math.dart';
 
@@ -19,10 +20,10 @@ class SearchpageState extends State<Searchpage> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: coremeasure_0, right: coremeasure_0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ShaderMask(
+        child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) => [
+          ShaderMask(
               blendMode: BlendMode.srcIn,
               shaderCallback: (Rect bounds) {
                 return const LinearGradient(
@@ -39,24 +40,10 @@ class SearchpageState extends State<Searchpage> {
                 alignment: Alignment.center,
               ),
             ),
-            // Container(
-            //   height: coremeasure_17 - coremeasure_11,
-            //   width: double.infinity,
-            //   child: OverflowBox(
-            //     alignment: Alignment.center,
-            //     child: Image(
-            //       height: coremeasure_18,
-            //       fit: BoxFit.cover,
-            //       image: NetworkImage(Tastydescendant.imageURL(
-            //           from: "http://localhost:3000/pic0.png",
-            //           width: coremeasure_18 * 3,
-            //           height: coremeasure_18 * 3)),
-            //     ),
-            //   ),
-            // ),
             Container(
-              // margin: EdgeInsets.symmetric(
-              //     vertical: (coremeasure_10 - coremeasure_5) / 2),
+              
+              margin:
+                  EdgeInsets.only(bottom: (coremeasure_10 - coremeasure_4) / 2),
               padding: EdgeInsets.only(left: coremeasure_0),
               // color: Colors.red,
               // height: coremeasure_10,
@@ -75,18 +62,16 @@ class SearchpageState extends State<Searchpage> {
               ),
             ),
             Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              // spacing: 8.0, // gap between adjacent chips
-              // runSpacing: 4.0, // gap between lines
-              children: <Widget>[
-                Text("This is a long line"),
-                Text("This is a long line"),
-                Text("This is a long line"),
-                Text("This is a long line"),
-             
-              ],
-            ),
-          ],
-        ));
+              alignment: WrapAlignment.spaceAround,
+              direction: Axis.horizontal,
+              runSpacing: coremeasure_0 / 2,
+              children: [
+              for (var i in [0, 1, 2, 3, 4,5,6,7,8,9,10,11])
+                    Lowtag()
+            ],)
+        ][index]),
+          
+         
+        );
   }
 }
