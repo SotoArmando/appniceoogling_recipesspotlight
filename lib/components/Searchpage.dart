@@ -76,7 +76,11 @@ class SearchpageState extends State<Searchpage> {
               child: TextFormField(
                 minLines: 1,
                 maxLines: 1,
+                style: Theme.of(context)
+                      .textTheme
+                      .bodyText1,
                 decoration: const InputDecoration.collapsed(
+                  
                     hintText: "Search any parameters"),
               ),
             ),
