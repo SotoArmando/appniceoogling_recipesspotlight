@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:niceoogling/resource/math.dart';
 
 class Lowtag extends StatefulWidget {
-  const Lowtag({ Key? key }) : super(key: key);
+  final String label;
+  const Lowtag({ Key? key, required this.label }) : super(key: key);
 
   @override
   _LowtagState createState() => _LowtagState();
@@ -12,14 +13,17 @@ class Lowtag extends StatefulWidget {
 class _LowtagState extends State<Lowtag> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.red, width: 1)
-      ),
+    return Material(
+      elevation: 1,
+      child: Container(
+      
+      
       width: coremeasure_13,
       height: coremeasure_10,
       alignment: Alignment.center,
-      child: Text("Nice floppy"),
-    );
+      child: Text(widget.label, style: Theme.of(context)
+                      .textTheme
+                      .bodyText1,),
+    ),);
   }
 }

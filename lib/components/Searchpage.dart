@@ -7,7 +7,26 @@ import 'package:flutter/widgets.dart';
 import 'package:niceoogling/components/Low/Lowtag.dart';
 import 'package:niceoogling/context/Tastydescendant.dart';
 import 'package:niceoogling/resource/math.dart';
-
+const List<String> categories = [
+  "Breakfast",
+  "Lunch",
+  "Beverages",
+  "Appetizers",
+  'Soups',
+  "Salads",
+  "Beef",
+  "Poultry",
+  "Pork",
+  "Seafood",
+  "Vegetarian",
+  "Vegetables",
+  "Other",
+  "Desserts",
+  "Canning / Freezing",
+  "Breads",
+  "Holidays",
+  "Entertaining"
+];
 class Searchpage extends StatefulWidget {
   Searchpage({Key? key}) : super(key: key);
 
@@ -66,8 +85,8 @@ class SearchpageState extends State<Searchpage> {
               direction: Axis.horizontal,
               runSpacing: coremeasure_0 / 2,
               children: [
-              for (var i in [0, 1, 2, 3, 4,5,6,7,8,9,10,11])
-                    Lowtag()
+              for (var i in categories)
+                    Lowtag(label: i)
             ],)
         ][index]),
           
